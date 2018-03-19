@@ -36,11 +36,6 @@ namespace PrimeiroProjetoMVC {
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}"
                 );
-
-                routes.MapRoute(
-                    name: "books",
-                    template: "{controller=Book}/{action=Index}"
-                );
             });
         }
     }
