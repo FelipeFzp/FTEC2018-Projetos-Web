@@ -6,38 +6,38 @@ using System.Linq;
 namespace PrimeiroProjetoMVC.Controllers
 {
     [Route("api/[controller]")]
-    public class BookController : Controller
+    public class StudentController : Controller
     {
         [HttpGet]
         public IActionResult GetAll()
         {
-            ViewData["books"] = MemoryDatabase.Books;
+            ViewData["students"] = MemoryDatabase.Students;
             return View();
         }
 
         [HttpGet("Search/{search}")]
         public IActionResult Search(string search)
         {
-            ViewData["books"] = MemoryDatabase.Books.Where(p => p.Name.StartsWith(search));
+            ViewData["students"] = MemoryDatabase.Students.Where(p => p.Name.StartsWith(search));
             return View();
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(string id)
         {
-            var book = MemoryDatabase.Books.SingleOrDefault(p => p.ID.Equals(id));
-            MemoryDatabase.Books.Remove(book);
+            var student = MemoryDatabase.Students.SingleOrDefault(p => p.ID.Equals(id));
+            MemoryDatabase.Students.Remove(student);
 
-            ViewData["books"] = MemoryDatabase.Books;
+            ViewData["students"] = MemoryDatabase.Students;
             return View();
         }
 
         [HttpPost]
-        public IActionResult Add([FromBody]string name, [FromBody]string author, [FromBody]string description)
+        public IActionResult Add(string name, string age)
         {
-            MemoryDatabase.Books.Add(Book.Create(name, author, description));
+            MemoryDatabase.Students.Add(Student.Create(age, name));
 
-            ViewData["books"] = MemoryDatabase.Books;
+            ViewData["students"] = MemoryDatabase.Students;
             return View();
         }
     }
