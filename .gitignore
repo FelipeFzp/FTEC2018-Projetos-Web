@@ -3,3 +3,13 @@
 ################################################################################
 
 *.lock
+*.config
+*.ide
+*.ide-shm
+*.ide-wal
+/Ftec.PrimeiroProjetoMVC/PrimeiroProjetoMVC/bin/Debug/netcoreapp2.0/PrimeiroProjetoMVC.deps.json
+/Ftec.PrimeiroProjetoMVC/PrimeiroProjetoMVC/bin/Debug/netcoreapp2.0/PrimeiroProjetoMVC.dll
+*.pdb
+/Ftec.PrimeiroProjetoMVC/PrimeiroProjetoMVC/bin/Debug/netcoreapp2.0/PrimeiroProjetoMVC.runtimeconfig.dev.json
+/Ftec.PrimeiroProjetoMVC/PrimeiroProjetoMVC/bin/Debug/netcoreapp2.0/PrimeiroProjetoMVC.runtimeconfig.json
+/Ftec.PrimeiroProjetoMVC/.vs/Ftec.PrimeiroProjetoMVC/v15/.suo
