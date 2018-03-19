@@ -2,13 +2,21 @@
     var books = (List<Book>) ViewData["books"];
 }
 
-<div class="row">
-    <ul>
-        @{ 
-            foreach(var book in books) {
+<h1>Livros</h1>
 
-                <li>@book.Name</li>
-            }
+<div class="row">
+    @{
+        foreach (var book in books) {
+            <div class="col-md-4 col-sm-2 col-xs-1">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">@book.Name</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
         }
-    </ul>
+    }
 </div>
+
