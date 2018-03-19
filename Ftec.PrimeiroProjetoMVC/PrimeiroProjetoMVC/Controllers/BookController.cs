@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PrimeiroProjetoMVC.Database;
+using PrimeiroProjetoMVC.InputModel;
 using PrimeiroProjetoMVC.Models;
 using System.Linq;
 
@@ -32,9 +33,9 @@ namespace PrimeiroProjetoMVC.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add([FromBody]string name, [FromBody]string author, [FromBody]string description)
+        public IActionResult Add([FromBody]BookInputModel input)
         {
-            MemoryDatabase.Books.Add(Book.Create(name, author, description));
+            MemoryDatabase.Books.Add(Book.Create(input.Name, input.Author, input.Description));
 
             ViewData["books"] = MemoryDatabase.Books;
             return View();

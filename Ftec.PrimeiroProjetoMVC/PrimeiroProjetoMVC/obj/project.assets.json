@@ -12536,25 +12536,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\igorw\\.nuget\\packages\\": {},
+    "C:\\Users\\felip\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Igor\\MegaCloud\\MEGA\\ADS\\5º Semestre\\Projeto Web\\FTEC2018-Projetos-Web\\Ftec.PrimeiroProjetoMVC\\PrimeiroProjetoMVC\\PrimeiroProjetoMVC.csproj",
+      "projectUniqueName": "C:\\Users\\felip\\Desktop\\Felipe\\Café e suas Variáveis\\Cadeiras FTEC\\Projetos Web\\FTEC2018-Projetos-Web\\Ftec.PrimeiroProjetoMVC\\PrimeiroProjetoMVC\\PrimeiroProjetoMVC.csproj",
       "projectName": "PrimeiroProjetoMVC",
-      "projectPath": "C:\\Igor\\MegaCloud\\MEGA\\ADS\\5º Semestre\\Projeto Web\\FTEC2018-Projetos-Web\\Ftec.PrimeiroProjetoMVC\\PrimeiroProjetoMVC\\PrimeiroProjetoMVC.csproj",
-      "packagesPath": "C:\\Users\\igorw\\.nuget\\packages\\",
-      "outputPath": "C:\\Igor\\MegaCloud\\MEGA\\ADS\\5º Semestre\\Projeto Web\\FTEC2018-Projetos-Web\\Ftec.PrimeiroProjetoMVC\\PrimeiroProjetoMVC\\obj\\",
+      "projectPath": "C:\\Users\\felip\\Desktop\\Felipe\\Café e suas Variáveis\\Cadeiras FTEC\\Projetos Web\\FTEC2018-Projetos-Web\\Ftec.PrimeiroProjetoMVC\\PrimeiroProjetoMVC\\PrimeiroProjetoMVC.csproj",
+      "packagesPath": "C:\\Users\\felip\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\felip\\Desktop\\Felipe\\Café e suas Variáveis\\Cadeiras FTEC\\Projetos Web\\FTEC2018-Projetos-Web\\Ftec.PrimeiroProjetoMVC\\PrimeiroProjetoMVC\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\igorw\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\felip\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
       ],
