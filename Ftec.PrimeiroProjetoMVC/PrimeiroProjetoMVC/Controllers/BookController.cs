@@ -6,6 +6,7 @@ using System.Linq;
 
 namespace PrimeiroProjetoMVC.Controllers
 {
+    [Route("api/[controller]")]
     public class BookController : Controller
     {
         public IActionResult Index()
