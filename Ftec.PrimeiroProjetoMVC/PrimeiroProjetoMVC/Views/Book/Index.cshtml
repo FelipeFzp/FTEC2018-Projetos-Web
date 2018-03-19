@@ -1,0 +1,14 @@
+﻿@{
+    var books = (List<Book>) ViewData["books"];
+}
+
+<div class="row">
+    <ul>
+        @{ 
+            foreach(var book in books) {
+
+                <li>@book.Name</li>
+            }
+        }
+    </ul>
+</div>

@@ -1,0 +1,11 @@
+C:\Igor\MegaCloud\MEGA\ADS\5º Semestre\Projeto Web\FTEC2018-Projetos-Web\Ftec.PrimeiroProjetoMVC\PrimeiroProjetoMVC\bin\Debug\netcoreapp2.0\PrimeiroProjetoMVC.deps.json
+C:\Igor\MegaCloud\MEGA\ADS\5º Semestre\Projeto Web\FTEC2018-Projetos-Web\Ftec.PrimeiroProjetoMVC\PrimeiroProjetoMVC\bin\Debug\netcoreapp2.0\PrimeiroProjetoMVC.runtimeconfig.json
+C:\Igor\MegaCloud\MEGA\ADS\5º Semestre\Projeto Web\FTEC2018-Projetos-Web\Ftec.PrimeiroProjetoMVC\PrimeiroProjetoMVC\bin\Debug\netcoreapp2.0\PrimeiroProjetoMVC.runtimeconfig.dev.json
+C:\Igor\MegaCloud\MEGA\ADS\5º Semestre\Projeto Web\FTEC2018-Projetos-Web\Ftec.PrimeiroProjetoMVC\PrimeiroProjetoMVC\bin\Debug\netcoreapp2.0\PrimeiroProjetoMVC.dll
+C:\Igor\MegaCloud\MEGA\ADS\5º Semestre\Projeto Web\FTEC2018-Projetos-Web\Ftec.PrimeiroProjetoMVC\PrimeiroProjetoMVC\bin\Debug\netcoreapp2.0\PrimeiroProjetoMVC.pdb
+C:\Igor\MegaCloud\MEGA\ADS\5º Semestre\Projeto Web\FTEC2018-Projetos-Web\Ftec.PrimeiroProjetoMVC\PrimeiroProjetoMVC\obj\Debug\netcoreapp2.0\PrimeiroProjetoMVC.csprojResolveAssemblyReference.cache
+C:\Igor\MegaCloud\MEGA\ADS\5º Semestre\Projeto Web\FTEC2018-Projetos-Web\Ftec.PrimeiroProjetoMVC\PrimeiroProjetoMVC\obj\Debug\netcoreapp2.0\PrimeiroProjetoMVC.csproj.CoreCompileInputs.cache
+C:\Igor\MegaCloud\MEGA\ADS\5º Semestre\Projeto Web\FTEC2018-Projetos-Web\Ftec.PrimeiroProjetoMVC\PrimeiroProjetoMVC\obj\Debug\netcoreapp2.0\PrimeiroProjetoMVC.AssemblyInfoInputs.cache
+C:\Igor\MegaCloud\MEGA\ADS\5º Semestre\Projeto Web\FTEC2018-Projetos-Web\Ftec.PrimeiroProjetoMVC\PrimeiroProjetoMVC\obj\Debug\netcoreapp2.0\PrimeiroProjetoMVC.AssemblyInfo.cs
+C:\Igor\MegaCloud\MEGA\ADS\5º Semestre\Projeto Web\FTEC2018-Projetos-Web\Ftec.PrimeiroProjetoMVC\PrimeiroProjetoMVC\obj\Debug\netcoreapp2.0\PrimeiroProjetoMVC.dll
+C:\Igor\MegaCloud\MEGA\ADS\5º Semestre\Projeto Web\FTEC2018-Projetos-Web\Ftec.PrimeiroProjetoMVC\PrimeiroProjetoMVC\obj\Debug\netcoreapp2.0\PrimeiroProjetoMVC.pdb

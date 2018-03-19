@@ -5,11 +5,10 @@ using System.Linq;
 
 namespace PrimeiroProjetoMVC.Controllers
 {
-    [Route("api/[controller]")]
     public class BookController : Controller
     {
         [HttpGet]
-        public IActionResult GetAll()
+        public IActionResult Index()
         {
             ViewData["books"] = MemoryDatabase.Books;
             return View();
