@@ -8,12 +8,6 @@ namespace PrimeiroProjetoMVC.Controllers
 {
     public class BookController : Controller
     {
-        private List<Book> _books = new List<Book>();
-
-        public BookController() {
-            //_books.Add(Book.Create());
-        }
-
         public IActionResult Index()
         {
             ViewData["books"] = MemoryDatabase.Books;
