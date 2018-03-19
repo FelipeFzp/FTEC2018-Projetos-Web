@@ -5,13 +5,15 @@ using System.Linq;
 
 namespace PrimeiroProjetoMVC.Controllers
 {
-    [Route("api/[controller]")]
     public class BookController : Controller
     {
         private List<Book> _books = new List<Book>();
 
-        [HttpGet]
-        public IActionResult GetAll()
+        public BookController() {
+            //_books.Add(Book.Create());
+        }
+
+        public IActionResult Index()
         {
             ViewData["books"] = _books;
             return View();
