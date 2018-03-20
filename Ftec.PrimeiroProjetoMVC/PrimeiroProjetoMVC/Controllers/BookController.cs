@@ -26,9 +26,11 @@ namespace PrimeiroProjetoMVC.Controllers
                 return Redirect("/Book");
             else
             {
-                ViewData["books"] = MemoryDatabase.Books.Where(p => p.Name.Contains(search) 
-                                                                 || p.Author.Contains(search) 
-                                                                 || p.Description.Contains(search)).ToList();
+                search = search.ToLower();
+                ViewData["books"] = MemoryDatabase.Books.Where(p => p.Name.ToLower().Contains(search) 
+                                                                 || p.Author.ToLower().Contains(search) 
+                                                                 || p.Description.ToLower().Contains(search))
+                                                                 .ToList();
                 ViewData["searchText"] = search;
             }
 
