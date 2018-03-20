@@ -14,6 +14,10 @@ namespace PrimeiroProjetoMVC.Controllers
             return View();
         }
 
+        public IActionResult Form() {
+            return View();
+        }
+
         [HttpGet("Search/{search}")]
         public IActionResult Search(string search)
         {
