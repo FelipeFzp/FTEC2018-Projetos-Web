@@ -3,15 +3,24 @@ using PrimeiroProjetoMVC.Database;
 using PrimeiroProjetoMVC.InputModel;
 using PrimeiroProjetoMVC.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace PrimeiroProjetoMVC.Controllers
 {
     public class BookController : Controller
     {
+        private List<Book> _books;
+
+        public BookController() {
+            var list = new List<Book>();
+            list.AddRange(MemoryDatabase.Books);
+            _books = list;
+        }
+
         public IActionResult Index()
         {
-            ViewData["books"] = MemoryDatabase.Books;
+            ViewData["books"] = _books;
             return View();
         }
 
@@ -21,7 +30,7 @@ namespace PrimeiroProjetoMVC.Controllers
 
         public IActionResult Search(string search)
         {
-            ViewData["books"] = MemoryDatabase.Books.Where(p => p.Name.StartsWith(search));
+            _books = MemoryDatabase.Books.Where(p => p.Name.StartsWith(search)).ToList();
 
             return Redirect("/Book");
         }
