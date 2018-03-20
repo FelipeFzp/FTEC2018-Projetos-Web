@@ -2,6 +2,7 @@
 using PrimeiroProjetoMVC.Database;
 using PrimeiroProjetoMVC.InputModel;
 using PrimeiroProjetoMVC.Models;
+using System;
 using System.Linq;
 
 namespace PrimeiroProjetoMVC.Controllers
@@ -25,7 +26,7 @@ namespace PrimeiroProjetoMVC.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(string id)
+        public IActionResult Delete(Guid id)
         {
             var student = MemoryDatabase.Students.SingleOrDefault(p => p.ID.Equals(id));
             MemoryDatabase.Students.Remove(student);
