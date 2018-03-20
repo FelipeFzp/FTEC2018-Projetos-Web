@@ -6,8 +6,10 @@ using System.Linq;
 
 namespace PrimeiroProjetoMVC.Controllers
 {
+    [Route("[controller]")]
     public class BookController : Controller
     {
+        [HttpGet]
         public IActionResult Index()
         {
             ViewData["books"] = MemoryDatabase.Books;

@@ -34,9 +34,7 @@ namespace PrimeiroProjetoMVC {
             app.UseStaticFiles();
 
             app.UseMvc(routes => {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}");
+                routes.MapRoute("default", "{controller=Home}/{action=Index}");
             });
         }
     }
