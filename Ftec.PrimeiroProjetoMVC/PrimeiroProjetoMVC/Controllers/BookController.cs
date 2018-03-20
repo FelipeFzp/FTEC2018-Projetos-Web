@@ -10,29 +10,30 @@ namespace PrimeiroProjetoMVC.Controllers
 {
     public class BookController : Controller
     {
-        private List<Book> _books;
-
-        public BookController() {
-            var list = new List<Book>();
-            list.AddRange(MemoryDatabase.Books);
-            _books = list;
-        }
-
         public IActionResult Index()
         {
-            ViewData["books"] = _books;
+            ViewData["books"] = MemoryDatabase.Books;
             return View();
         }
 
-        public IActionResult Form() {
+        public IActionResult Form()
+        {
             return View();
         }
 
         public IActionResult Search(string search)
         {
-            _books = MemoryDatabase.Books.Where(p => p.Name.StartsWith(search)).ToList();
+            if (search == null || search.Equals(String.Empty))
+                return Redirect("/Book");
+            else
+            {
+                ViewData["books"] = MemoryDatabase.Books.Where(p => p.Name.Contains(search) 
+                                                                 || p.Author.Contains(search) 
+                                                                 || p.Description.Contains(search)).ToList();
+                ViewData["searchText"] = search;
+            }
 
-            return Redirect("/Book");
+            return View("Index");
         }
 
         public IActionResult Delete(Guid id)
