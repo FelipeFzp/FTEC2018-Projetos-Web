@@ -2,6 +2,7 @@
 using PrimeiroProjetoMVC.Database;
 using PrimeiroProjetoMVC.InputModel;
 using PrimeiroProjetoMVC.Models;
+using System;
 using System.Linq;
 
 namespace PrimeiroProjetoMVC.Controllers
@@ -22,18 +23,17 @@ namespace PrimeiroProjetoMVC.Controllers
         {
             ViewData["books"] = MemoryDatabase.Books.Where(p => p.Name.StartsWith(search));
 
-            return RedirectToAction("Index", "Book");
+            return Redirect("/Book");
         }
 
-
-        public IActionResult Delete(string id)
+        public IActionResult Delete(Guid id)
         {
             var book = MemoryDatabase.Books.SingleOrDefault(p => p.ID.Equals(id));
             MemoryDatabase.Books.Remove(book);
 
             ViewData["books"] = MemoryDatabase.Books;
 
-            return RedirectToAction("Index", "Book");
+            return Redirect("/Book");
         }
 
         public IActionResult Add(BookInputModel input)
@@ -42,7 +42,7 @@ namespace PrimeiroProjetoMVC.Controllers
 
             ViewData["books"] = MemoryDatabase.Books;
 
-            return RedirectToAction("Index", "Book");
+            return Redirect("/Book");
         }
     }
 }
