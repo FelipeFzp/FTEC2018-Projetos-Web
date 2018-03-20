@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace PrimeiroProjetoMVC.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class StudentController : Controller
     {
         [HttpGet]
