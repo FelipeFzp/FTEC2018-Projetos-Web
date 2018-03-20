@@ -1,6 +1,6 @@
 ﻿@{
     var books = (List<Book>) ViewData["books"];
-    var search = ViewData["searchText"];
+    var search = (string) ViewData["searchText"];
 
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -23,8 +23,6 @@
         </form>
     </div>
 </div>
-
-<a asp-action="Form">Create New</a>
 
 <table class="table">
     <thead>

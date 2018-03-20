@@ -1,0 +1,67 @@
+﻿@{
+    var employees = (List<Employee>)ViewData["employees"];
+    var search = (string) ViewData["searchText"];
+
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Funcionários</h2>
+
+<p>
+    <a asp-action="Form">Create New</a>
+</p>
+
+<div class="row">
+    <div class="col-xs-12">
+        <form asp-action="Search">
+            <div class="form-group">
+                <label for="search">Search</label>
+                <input type="text" name="search" class="form-control" id="search" placeholder="Search" value="@search">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Identificação
+            </th>
+            <th>
+                Nome
+            </th>
+            <th>
+                Idade
+            </th>
+            <th>
+                Profissão
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in employees)
+        {
+            <tr>
+                <td>
+                    @item.ID
+                </td>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.Age
+                </td>
+                <td>
+                    @item.ProfessionalPosition
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

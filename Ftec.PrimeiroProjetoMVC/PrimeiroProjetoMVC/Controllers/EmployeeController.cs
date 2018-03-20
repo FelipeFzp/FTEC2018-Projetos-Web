@@ -7,25 +7,35 @@ using System.Linq;
 
 namespace PrimeiroProjetoMVC.Controllers
 {
-    [Route("[controller]")]
     public class EmployeeController: Controller
     {
-        [HttpGet]
         public IActionResult Index()
         {
             ViewData["employees"] = MemoryDatabase.Employees;
             return View();
         }
 
-        [HttpGet("Search/{search}")]
-        public IActionResult Search(string search)
+        public IActionResult Form()
         {
-            ViewData["employees"] = MemoryDatabase.Employees.Where(p => p.Name.StartsWith(search));
-
-            return RedirectToAction("Index", "Employee");
+            return View();
         }
 
-        [HttpDelete("{id}")]
+        public IActionResult Search(string search)
+        {
+            if (search == null || search.Equals(String.Empty))
+                return Redirect("/Employee");
+            else
+            {
+                ViewData["employees"] = MemoryDatabase.Employees
+                                                .Where(p => p.Name.ToLower().Contains(search.ToLower()) || 
+                                                            p.Age.ToString().Contains(search) || 
+                                                            p.ProfessionalPosition.ToLower().Contains(search.ToLower())).ToList();
+                ViewData["searchText"] = search;                                                                 
+            }
+
+            return View("Index");
+        }
+
         public IActionResult Delete(Guid id)
         {
             var student = MemoryDatabase.Employees.SingleOrDefault(p => p.ID.Equals(id));
@@ -33,17 +43,16 @@ namespace PrimeiroProjetoMVC.Controllers
 
             ViewData["employees"] = MemoryDatabase.Employees;
 
-            return RedirectToAction("Index", "Employee");
+            return Redirect("/Employee");
         }
 
-        [HttpPost]
-        public IActionResult Add([FromBody] EmployeeInputModel input)
+        public IActionResult Add(EmployeeInputModel input)
         {
             MemoryDatabase.Employees.Add(Employee.Create(input.Name, input.Age, input.ProfessionalPosition));
 
             ViewData["employees"] = MemoryDatabase.Students;
 
-            return RedirectToAction("Index", "Employee");
+            return Redirect("/Employee");
         }
     }
 }
