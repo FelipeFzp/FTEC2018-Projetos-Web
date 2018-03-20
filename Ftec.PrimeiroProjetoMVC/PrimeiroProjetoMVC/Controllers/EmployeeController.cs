@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PrimeiroProjetoMVC.Database;
+using PrimeiroProjetoMVC.InputModel;
 using PrimeiroProjetoMVC.Models;
 using System.Linq;
 
@@ -9,7 +10,7 @@ namespace PrimeiroProjetoMVC.Controllers
     public class EmployeeController: Controller
     {
         [HttpGet]
-        public IActionResult GetAll()
+        public IActionResult Index()
         {
             ViewData["employees"] = MemoryDatabase.Employees;
             return View();
@@ -19,7 +20,8 @@ namespace PrimeiroProjetoMVC.Controllers
         public IActionResult Search(string search)
         {
             ViewData["employees"] = MemoryDatabase.Employees.Where(p => p.Name.StartsWith(search));
-            return View();
+
+            return RedirectToAction("Index", "Employee");
         }
 
         [HttpDelete("{id}")]
@@ -29,16 +31,18 @@ namespace PrimeiroProjetoMVC.Controllers
             MemoryDatabase.Employees.Remove(student);
 
             ViewData["employees"] = MemoryDatabase.Employees;
-            return View();
+
+            return RedirectToAction("Index", "Employee");
         }
 
         [HttpPost]
-        public IActionResult Add(string name, string age, string professionalPosition)
+        public IActionResult Add([FromBody] EmployeeInputModel input)
         {
-            MemoryDatabase.Employees.Add(Employee.Create(name, age, professionalPosition));
+            MemoryDatabase.Employees.Add(Employee.Create(input.Name, input.Age, input.ProfessionalPosition));
 
             ViewData["employees"] = MemoryDatabase.Students;
-            return View();
+
+            return RedirectToAction("Index", "Employee");
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PrimeiroProjetoMVC.Database;
+using PrimeiroProjetoMVC.InputModel;
 using PrimeiroProjetoMVC.Models;
 using System.Linq;
 
@@ -9,7 +10,7 @@ namespace PrimeiroProjetoMVC.Controllers
     public class StudentController : Controller
     {
         [HttpGet]
-        public IActionResult GetAll()
+        public IActionResult Index()
         {
             ViewData["students"] = MemoryDatabase.Students;
             return View();
@@ -19,7 +20,8 @@ namespace PrimeiroProjetoMVC.Controllers
         public IActionResult Search(string search)
         {
             ViewData["students"] = MemoryDatabase.Students.Where(p => p.Name.StartsWith(search));
-            return View();
+
+            return RedirectToAction("Index", "Student");
         }
 
         [HttpDelete("{id}")]
@@ -29,16 +31,18 @@ namespace PrimeiroProjetoMVC.Controllers
             MemoryDatabase.Students.Remove(student);
 
             ViewData["students"] = MemoryDatabase.Students;
-            return View();
+
+            return RedirectToAction("Index", "Student");
         }
 
         [HttpPost]
-        public IActionResult Add(string name, string age)
+        public IActionResult Add([FromBody]StudentInputModel input)
         {
-            MemoryDatabase.Students.Add(Student.Create(age, name));
+            MemoryDatabase.Students.Add(Student.Create(input.Age, input.Name));
 
             ViewData["students"] = MemoryDatabase.Students;
-            return View();
+
+            return RedirectToAction("Index", "Student");
         }
     }
 }

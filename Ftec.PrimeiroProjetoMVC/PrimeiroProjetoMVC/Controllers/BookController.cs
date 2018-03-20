@@ -6,9 +6,10 @@ using System.Linq;
 
 namespace PrimeiroProjetoMVC.Controllers
 {
-    [Route("api/[controller]")]
+    //[Route("api/[controller]")]
     public class BookController : Controller
     {
+        [HttpGet("Book")]
         public IActionResult Index()
         {
             ViewData["books"] = MemoryDatabase.Books;
@@ -19,7 +20,8 @@ namespace PrimeiroProjetoMVC.Controllers
         public IActionResult Search(string search)
         {
             ViewData["books"] = MemoryDatabase.Books.Where(p => p.Name.StartsWith(search));
-            return View();
+
+            return RedirectToAction("Index", "Book");
         }
 
         [HttpDelete("{id}")]
@@ -29,7 +31,8 @@ namespace PrimeiroProjetoMVC.Controllers
             MemoryDatabase.Books.Remove(book);
 
             ViewData["books"] = MemoryDatabase.Books;
-            return View();
+
+            return RedirectToAction("Index", "Book");
         }
 
         [HttpPost]
@@ -38,7 +41,8 @@ namespace PrimeiroProjetoMVC.Controllers
             MemoryDatabase.Books.Add(Book.Create(input.Name, input.Author, input.Description));
 
             ViewData["books"] = MemoryDatabase.Books;
-            return View();
+
+            return RedirectToAction("Index", "Book");
         }
     }
 }
