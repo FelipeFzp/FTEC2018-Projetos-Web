@@ -17,10 +17,7 @@ namespace PrimeiroProjetoMVC {
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services) {
-            services.AddMvc().AddRazorPagesOptions(options =>
-            {
-                options.Conventions.AddPageRoute("/Employees/Index", "books");
-            });
+            services.AddMvc();
 
         }
 
@@ -33,7 +30,8 @@ namespace PrimeiroProjetoMVC {
 
             app.UseStaticFiles();
 
-            app.UseMvc(routes => {
+            app.UseMvc(routes =>
+            {
                 routes.MapRoute("Book", "");
             });
         }
