@@ -42,16 +42,13 @@ namespace PrimeiroProjetoMVC.Controllers
             var book = MemoryDatabase.Books.SingleOrDefault(p => p.ID.Equals(id));
             MemoryDatabase.Books.Remove(book);
 
-            ViewData["books"] = MemoryDatabase.Books;
-
             return Redirect("/Book");
         }
 
+        [HttpPost]
         public IActionResult Add(BookInputModel input)
         {
             MemoryDatabase.Books.Add(Book.Create(input.Name, input.Author, input.Description));
-
-            ViewData["books"] = MemoryDatabase.Books;
 
             return Redirect("/Book");
         }

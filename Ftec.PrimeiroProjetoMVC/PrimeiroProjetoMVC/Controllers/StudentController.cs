@@ -7,43 +7,49 @@ using System.Linq;
 
 namespace PrimeiroProjetoMVC.Controllers
 {
-    [Route("[controller]")]
     public class StudentController : Controller
     {
-        [HttpGet]
         public IActionResult Index()
         {
             ViewData["students"] = MemoryDatabase.Students;
             return View();
         }
 
-        [HttpGet("Search/{search}")]
-        public IActionResult Search(string search)
+        public IActionResult Form()
         {
-            ViewData["students"] = MemoryDatabase.Students.Where(p => p.Name.StartsWith(search));
-
-            return RedirectToAction("Index", "Student");
+            return View();
         }
 
-        [HttpDelete("{id}")]
+        public IActionResult Search(string search)
+        {
+            if (search == null || search.Equals(String.Empty))
+                return Redirect("/Student");
+            else
+            {
+                search = search.ToLower();
+                ViewData["students"] = MemoryDatabase.Students.Where(p => p.Name.ToLower().Contains(search)
+                                                                    || p.Age.ToLower().Contains(search))
+                                                                 .ToList();
+                ViewData["searchText"] = search;
+            }
+
+            return View("Index");
+        }
+
         public IActionResult Delete(Guid id)
         {
             var student = MemoryDatabase.Students.SingleOrDefault(p => p.ID.Equals(id));
             MemoryDatabase.Students.Remove(student);
 
-            ViewData["students"] = MemoryDatabase.Students;
-
-            return RedirectToAction("Index", "Student");
+            return Redirect("/Student");
         }
 
         [HttpPost]
-        public IActionResult Add([FromBody]StudentInputModel input)
+        public IActionResult Add(StudentInputModel input)
         {
             MemoryDatabase.Students.Add(Student.Create(input.Age, input.Name));
 
-            ViewData["students"] = MemoryDatabase.Students;
-
-            return RedirectToAction("Index", "Student");
+            return Redirect("/Student");
         }
     }
 }

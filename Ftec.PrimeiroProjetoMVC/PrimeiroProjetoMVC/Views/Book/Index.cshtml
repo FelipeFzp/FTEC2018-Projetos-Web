@@ -1,7 +1,4 @@
 ﻿@{
-    var books = (List<Book>) ViewData["books"];
-    var search = (string) ViewData["searchText"];
-
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -9,17 +6,17 @@
 <h2>Livros</h2>
 
 <p>
-    <a asp-action="Form">Create New</a>
+    <a asp-action="Form">Criar Novo</a>
 </p>
 
 <div class="row">
     <div class="col-xs-12">
         <form asp-action="Search">
             <div class="form-group">
-                <label for="search">Search</label>
-                <input type="text" name="search" class="form-control" id="search" placeholder="Search" value="@search">
+                <label for="search">Buscar</label>
+                <input type="text" name="search" class="form-control" id="search" placeholder="Buscar" value="@ViewBag.Search">
             </div>
-            <button type="submit" class="btn btn-default">Submit</button>
+            <button type="submit" class="btn btn-default">Enviar</button>
         </form>
     </div>
 </div>
@@ -34,13 +31,13 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in books) {
+        @foreach (var item in ViewBag.Books) {
             <tr>
                 <td>@item.ID</td>
                 <td>@item.Name</td>
                 <td>@item.Author</td>
                 <td>@item.Description</td>
-                <td>@Html.ActionLink("Delete", "Delete", new {  id = item.ID })</td>
+                <td>@Html.ActionLink("Deletar", "Delete", new {  id = item.ID })</td>
             </tr>
         }
     </tbody>

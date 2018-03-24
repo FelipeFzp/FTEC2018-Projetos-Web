@@ -41,16 +41,12 @@ namespace PrimeiroProjetoMVC.Controllers
             var student = MemoryDatabase.Employees.SingleOrDefault(p => p.ID.Equals(id));
             MemoryDatabase.Employees.Remove(student);
 
-            ViewData["employees"] = MemoryDatabase.Employees;
-
             return Redirect("/Employee");
         }
-
+        [HttpPost]
         public IActionResult Add(EmployeeInputModel input)
         {
             MemoryDatabase.Employees.Add(Employee.Create(input.Name, input.Age, input.ProfessionalPosition));
-
-            ViewData["employees"] = MemoryDatabase.Students;
 
             return Redirect("/Employee");
         }
