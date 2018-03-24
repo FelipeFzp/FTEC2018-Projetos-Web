@@ -3,30 +3,38 @@
 @{
     ViewData["Title"] = "Form";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var employee = ViewBag.Employee;
+    bool isEdit = employee != null ? true : false;
 }
 
-<h2>Novo Funcionário</h2>
+<h2>@(isEdit ? "Editar Funcionário" : "Novo Funcionário")</h2>
 
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form method="post" asp-action="Add">
+        <form method="post" asp-action="@(isEdit ? "Update" : "Add")">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
+                <input asp-for="Name" value="@(isEdit ? employee.Name : null)" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Age" class="control-label"></label>
-                <input asp-for="Age" class="form-control" />
+                <input asp-for="Age" type="number" value="@(isEdit ? employee.Age : null)" class="form-control" />
                 <span asp-validation-for="Age" type="number" min="1" max="130" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ProfessionalPosition" class="control-label"></label>
-                <input asp-for="ProfessionalPosition" class="form-control" />
+                <input asp-for="ProfessionalPosition" value="@(isEdit ? employee.ProfessionalPosition : null)" class="form-control" />
                 <span asp-validation-for="ProfessionalPosition" class="text-danger"></span>
             </div>
+
+            @if (isEdit) {
+                <input type="hidden" asp-for="ID" value="@employee.ID" />
+            }
+
             <div class="form-group">
                 <input type="submit" value="Enviar" class="btn btn-default" />
             </div>

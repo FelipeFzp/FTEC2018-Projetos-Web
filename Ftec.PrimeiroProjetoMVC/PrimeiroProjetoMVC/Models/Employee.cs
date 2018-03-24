@@ -20,5 +20,16 @@ namespace PrimeiroProjetoMVC.Models
 
             return employee;
         }
+
+        public static Employee Create(string name, string age, string professionalPosition, Guid id) {
+            var employee = new Employee();
+
+            employee.ID = id;
+            employee.Age = age;
+            employee.Name = name;
+            employee.ProfessionalPosition = professionalPosition;
+
+            return employee;
+        }
     }
 }

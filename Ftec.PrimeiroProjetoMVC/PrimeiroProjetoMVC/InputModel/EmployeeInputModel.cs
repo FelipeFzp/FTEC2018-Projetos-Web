@@ -7,6 +7,7 @@ namespace PrimeiroProjetoMVC.InputModel
 {
     public class EmployeeInputModel
     {
+        public Guid ID { get; set; }
         public string Name { get; set; }
         public string Age { get; set; }
         public string ProfessionalPosition { get; set; }

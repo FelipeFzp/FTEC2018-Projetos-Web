@@ -6,7 +6,7 @@
 <h2>Livros</h2>
 
 <p>
-    <a asp-action="Form">Criar Novo</a>
+    <a asp-action="CreateNew">Criar Novo</a>
 </p>
 
 <div class="row">
@@ -14,7 +14,7 @@
         <form asp-action="Search">
             <div class="form-group">
                 <label for="search">Buscar</label>
-                <input type="text" name="search" class="form-control" id="search" placeholder="Buscar" value="@ViewBag.Search">
+                <input type="text" name="search" class="form-control" id="search" placeholder="Buscar" value="@ViewBag.SearchText">
             </div>
             <button type="submit" class="btn btn-default">Enviar</button>
         </form>
@@ -37,7 +37,10 @@
                 <td>@item.Name</td>
                 <td>@item.Author</td>
                 <td>@item.Description</td>
-                <td>@Html.ActionLink("Deletar", "Delete", new {  id = item.ID })</td>
+                <td>
+                    @Html.ActionLink("Deletar", "Delete", new { id = item.ID }) | 
+                    @Html.ActionLink("Editar", "Edit", new { id = item.ID })
+                </td>
             </tr>
         }
     </tbody>

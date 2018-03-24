@@ -20,5 +20,16 @@ namespace PrimeiroProjetoMVC.Models
 
             return book;
         }
+
+        public static Book Create(string name, string author, string description, Guid id) {
+            var book = new Book();
+
+            book.ID = id;
+            book.Name = name;
+            book.Author = author;
+            book.Description = description;
+
+            return book;
+        }
     }
 }

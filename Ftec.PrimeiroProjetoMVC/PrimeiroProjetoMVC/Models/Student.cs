@@ -18,5 +18,15 @@ namespace PrimeiroProjetoMVC.Models
 
             return student;
         }
+
+        public static Student Create(string age, string name, Guid id) {
+            var student = new Student();
+
+            student.ID = id;
+            student.Age = age;
+            student.Name = name;
+
+            return student;
+        }
     }
 }
