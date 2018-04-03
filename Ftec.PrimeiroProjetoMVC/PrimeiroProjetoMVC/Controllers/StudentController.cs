@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using PrimeiroProjetoMVC.Database;
 using PrimeiroProjetoMVC.InputModel;
 using PrimeiroProjetoMVC.Models;
@@ -8,8 +9,15 @@ using System.Linq;
 
 namespace PrimeiroProjetoMVC.Controllers {
     public class StudentController : Controller {
+
+        private MemoryDatabase _memoryDatabase;
+
+        public StudentController(IHttpContextAccessor httpContextAccessor) {
+            _memoryDatabase = new MemoryDatabase(httpContextAccessor);
+        }
+
         public IActionResult Index() {
-            ViewData["students"] = MemoryDatabase.Students;
+            ViewData["students"] = _memoryDatabase.GetStudents();
             return View();
         }
 
@@ -18,7 +26,7 @@ namespace PrimeiroProjetoMVC.Controllers {
         }
 
         public IActionResult Edit(Guid id) {
-            var student = MemoryDatabase.Students.SingleOrDefault(p => p.ID.Equals(id));
+            var student = _memoryDatabase.GetStudents().SingleOrDefault(p => p.ID.Equals(id));
             ViewBag.Student = student;
 
             return View("Form");
@@ -29,7 +37,7 @@ namespace PrimeiroProjetoMVC.Controllers {
                 return Redirect("/Student");
             else {
                 search = search.ToLower();
-                ViewData["students"] = MemoryDatabase.Students.Where(p => p.Name.ToLower().Contains(search)
+                ViewData["students"] = _memoryDatabase.GetStudents().Where(p => p.Name.ToLower().Contains(search)
                                                                     || p.Age.ToLower().Contains(search))
                                                                  .ToList();
                 ViewData["searchText"] = search;
@@ -39,15 +47,19 @@ namespace PrimeiroProjetoMVC.Controllers {
         }
 
         public IActionResult Delete(Guid id) {
-            var student = MemoryDatabase.Students.SingleOrDefault(p => p.ID.Equals(id));
-            MemoryDatabase.Students.Remove(student);
+            var students = _memoryDatabase.GetStudents();
+            var student = _memoryDatabase.GetStudents().SingleOrDefault(p => p.ID.Equals(id));
+            students.Remove(student);
+            _memoryDatabase.SetStudents(students);
 
             return Redirect("/Student");
         }
 
         [HttpPost]
         public IActionResult Add(StudentInputModel input) {
-            MemoryDatabase.Students.Add(Student.Create(input.Age, input.Name));
+            var students = _memoryDatabase.GetStudents();
+            students.Add(Student.Create(input.Age, input.Name));
+            _memoryDatabase.SetStudents(students);
 
             return Redirect("/Student");
         }
@@ -57,14 +69,14 @@ namespace PrimeiroProjetoMVC.Controllers {
 
             ICollection<Student> students = new List<Student>();
 
-            foreach (var item in MemoryDatabase.Students) {
+            foreach (var item in _memoryDatabase.GetStudents()) {
                 if (item.ID == input.ID)
                     students.Add(Student.Create(input.Age, input.Name, input.ID));
                 else
                     students.Add(item);
             }
 
-            MemoryDatabase.Students = students;
+            _memoryDatabase.SetStudents(students);
 
             return Redirect("/Student");
         }

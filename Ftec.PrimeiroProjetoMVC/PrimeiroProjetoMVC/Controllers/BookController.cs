@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using PrimeiroProjetoMVC.Database;
 using PrimeiroProjetoMVC.InputModel;
 using PrimeiroProjetoMVC.Models;
@@ -9,8 +10,15 @@ using System.Linq;
 
 namespace PrimeiroProjetoMVC.Controllers {
     public class BookController : Controller {
+
+        private MemoryDatabase _memoryDatabase;
+
+        public BookController(IHttpContextAccessor httpContextAccessor) {
+            _memoryDatabase = new MemoryDatabase(httpContextAccessor);
+        }
+
         public IActionResult Index() {
-            ViewBag.Books = MemoryDatabase.Books;
+            ViewBag.Books = _memoryDatabase.GetBooks();
             return View();
         }
 
@@ -19,7 +27,7 @@ namespace PrimeiroProjetoMVC.Controllers {
         }
 
         public IActionResult Edit(Guid id) {
-            var book = MemoryDatabase.Books.SingleOrDefault(p => p.ID.Equals(id));
+            var book = _memoryDatabase.GetBooks().SingleOrDefault(p => p.ID.Equals(id));
             ViewBag.Book = book;
 
             return View("Form");
@@ -30,7 +38,7 @@ namespace PrimeiroProjetoMVC.Controllers {
                 return Redirect("/Book");
             else {
                 search = search.ToLower();
-                ViewBag.Books = MemoryDatabase.Books.Where(p => p.Name.ToLower().Contains(search)
+                ViewBag.Books = _memoryDatabase.GetBooks().Where(p => p.Name.ToLower().Contains(search)
                                                                  || p.Author.ToLower().Contains(search)
                                                                  || p.Description.ToLower().Contains(search))
                                                                  .ToList();
@@ -41,15 +49,19 @@ namespace PrimeiroProjetoMVC.Controllers {
         }
 
         public IActionResult Delete(Guid id) {
-            var book = MemoryDatabase.Books.SingleOrDefault(p => p.ID.Equals(id));
-            MemoryDatabase.Books.Remove(book);
+            var books = _memoryDatabase.GetBooks();
+            var book = _memoryDatabase.GetBooks().SingleOrDefault(p => p.ID == id);
+            books.Remove(book);
+            _memoryDatabase.SetBooks(books);
 
             return Redirect("/Book");
         }
 
         [HttpPost]
         public IActionResult Add(BookInputModel input) {
-            MemoryDatabase.Books.Add(Book.Create(input.Name, input.Author, input.Description));
+            var books = _memoryDatabase.GetBooks();
+            books.Add(Book.Create(input.Name, input.Author, input.Description));
+            _memoryDatabase.SetBooks(books);
 
             return Redirect("/Book");
         }
@@ -59,14 +71,14 @@ namespace PrimeiroProjetoMVC.Controllers {
 
             ICollection<Book> books = new List<Book>();
 
-            foreach (var item in MemoryDatabase.Books) {
+            foreach (var item in _memoryDatabase.GetBooks()) {
                 if (item.ID == input.ID)
                     books.Add(Book.Create(input.Name, input.Author, input.Description, input.ID));
                 else
                     books.Add(item);
             }
 
-            MemoryDatabase.Books = books;
+            _memoryDatabase.SetBooks(books);
 
             return Redirect("/Book");
         }
