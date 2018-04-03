@@ -48,7 +48,7 @@ namespace PrimeiroProjetoMVC.Controllers {
 
         public IActionResult Delete(Guid id) {
             var employees = _memoryDatabase.GetEmployees();
-            var employee = _memoryDatabase.GetEmployees().SingleOrDefault(p => p.ID.Equals(id));
+            var employee = employees.SingleOrDefault(p => p.ID.Equals(id));
             employees.Remove(employee);
             _memoryDatabase.SetEmployees(employees);
 

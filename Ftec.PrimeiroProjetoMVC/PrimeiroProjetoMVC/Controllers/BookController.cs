@@ -50,7 +50,7 @@ namespace PrimeiroProjetoMVC.Controllers {
 
         public IActionResult Delete(Guid id) {
             var books = _memoryDatabase.GetBooks();
-            var book = _memoryDatabase.GetBooks().SingleOrDefault(p => p.ID == id);
+            var book = books.SingleOrDefault(p => p.ID.Equals(id));
             books.Remove(book);
             _memoryDatabase.SetBooks(books);
 

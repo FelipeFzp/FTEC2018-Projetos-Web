@@ -48,7 +48,7 @@ namespace PrimeiroProjetoMVC.Controllers {
 
         public IActionResult Delete(Guid id) {
             var students = _memoryDatabase.GetStudents();
-            var student = _memoryDatabase.GetStudents().SingleOrDefault(p => p.ID.Equals(id));
+            var student = students.SingleOrDefault(p => p.ID.Equals(id));
             students.Remove(student);
             _memoryDatabase.SetStudents(students);
 
